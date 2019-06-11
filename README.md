@@ -18,22 +18,20 @@ DELETE /statistics: To delete all transactions, this endpoint is called.
 
 Design:
 
-Our application initiates a array of fixed size [in our case, it is 60]. For each second, we aggregate all the valid transactions 
-and store the item in that particular index. Each index in the array represents all the valid transactions that has 
-happened in that particular second.
+Our application initiates a array of fixed size [in our case, it is 60].  Each index in the array represents all the valid transactions that has happened in that particular second. 
 
 POST:
 
 For every new transaction, once the input request is validated, we find the corresponding transaction index and create 
-the new item (or) add to the existing transactions in that transaction index.
+the new item (or) add the transaction to the existing transactions in that particular transaction index.
 
-The time complexity is O(1), as it only put the valid transaction in the array (number of operations is constant)
+Time complexity is O(1), as it only put the valid transaction in the array (number of operations is constant)
 
 GET :
 
-In case of getting statistics, we aggregate all valid transactions indices and compute the statistics and returns it.
+In case of getting statistics, we aggregate all valid transactions that happened in the last 60 seconds and returns the result.
 
-Time Complexity is O(1), as fetching all valid transaction is constant [60 indices at max] and computing statistics
+Time Complexity is O(1), as fetching all valid transactions is constant [60 indices at max] and computing statistics
 is constant [60 indices at max]
 
 DELETE:
